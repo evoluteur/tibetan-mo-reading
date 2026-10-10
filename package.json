@@ -1,0 +1,30 @@
+{
+  "name": "tibetan-mo-reading",
+  "version": "1.0.0",
+  "description": "Ask a question and throw the Mo die: a free online Tibetan Mo divination with Manjushri's six syllables, A RA PA TSA NA DHI, and the 36 answers of Mipham's Mo.",
+  "repository": "github:evoluteur/tibetan-mo-reading",
+  "homepage": "https://evoluteur.github.io/tibetan-mo-reading/",
+  "copyright": "(c) 2026 Olivier Giulieri",
+  "author": "Olivier Giulieri (https://evoluteur.github.io/)",
+  "license": "MIT",
+  "scripts": {
+    "build": "node scripts/build-mo-pages.js"
+  },
+  "keywords": [
+    "mo",
+    "mo-divination",
+    "tibetan-divination",
+    "tibetan-buddhism",
+    "tibet",
+    "manjushri",
+    "mipham",
+    "dice-divination",
+    "divination",
+    "oracle",
+    "fortune-telling",
+    "esoteric",
+    "esoterica",
+    "mystic",
+    "javascript"
+  ]
+}

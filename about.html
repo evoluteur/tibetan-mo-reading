@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-063933E3C2"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-063933E3C2");
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Mo - Tibetan Mo Reading</title>
+    <meta
+      name="description"
+      content="What Mo is, how Tibetan dice divination works with Manjushri's six syllables, Jamgön Mipham's Mo manual, and a short history of Mo."
+    />
+    <meta name="author" content="Olivier Giulieri" />
+    <link
+      rel="canonical"
+      href="https://evoluteur.github.io/tibetan-mo-reading/about.html"
+    />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta name="theme-color" content="#1a212d" />
+    <meta
+      property="og:image"
+      content="https://evoluteur.github.io/tibetan-mo-reading/tibetan-mo-reading.png"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Overpass"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tibetan:wght@400;700&display=swap"
+    />
+    <link id="omg-core-css" rel="stylesheet" href="css/core.css" />
+    <script>
+      // Themes (dark, light, evol-blue) are copies of omg-themes; set OMG_THEMES_BASE to link the hosted ones instead.
+      window.OMG_THEMES_BASE = ""; // or "https://evoluteur.github.io/omg-themes/" to link the hosted themes
+      window.OMG_DEFAULT_THEME = "dark";
+      (function () {
+        var t = window.OMG_DEFAULT_THEME;
+        try {
+          t = localStorage.getItem("omg-theme") || t;
+        } catch (e) {}
+        if (t !== "dark" && t !== "light" && t !== "evol-blue")
+          t = window.OMG_DEFAULT_THEME;
+        document.documentElement.setAttribute("data-theme", t);
+        // written here (not in the markup) so the saved theme loads before first paint
+        document.write(
+          '<link id="omg-theme-css" rel="stylesheet" href="' +
+            window.OMG_THEMES_BASE +
+            "css/themes/" +
+            t +
+            "/" +
+            t +
+            '.css" />',
+        );
+      })();
+    </script>
+    <link id="omg-density-css" rel="stylesheet" href="css/densities.css" />
+    <link rel="stylesheet" href="css/mo.css" />
+    <link rel="stylesheet" href="css/about.css" />
+
+    <script src="js/omg.js"></script>
+    <script src="js/speech.js"></script>
+    <script src="js/mo-data.js"></script>
+    <script src="js/mo.js"></script>
+    <script>
+      // the six syllables, the 6 x 6 table of divinations, and the mantra's speaker button
+      addEventListener("DOMContentLoaded", () => {
+        document.getElementById("syl-picks").innerHTML = SYLLABLES.map(
+          (s) => `
+          <li><button type="button" class="syl-pick" data-syl="${s.id}" onclick="showSyllableDetail('${s.id}')">
+            <span class="tib sp-tib" lang="bo">${s.tib}</span>
+            <span class="rn">${s.name}</span><span class="rs">${s.element}</span>
+          </button></li>`,
+        ).join("");
+        document.getElementById("mo-grid").innerHTML =
+          `<thead><tr><th scope="col"><span class="visually-hidden">First throw, then second throw</span></th>${SYLLABLES.map(
+            (s) => `<th scope="col"><span class="tib" lang="bo">${s.tib}</span> ${s.name}</th>`,
+          ).join("")}</tr></thead><tbody>` +
+          SYLLABLES.map(
+            (a) =>
+              `<tr><th scope="row"><span class="tib" lang="bo">${a.tib}</span> ${a.name}</th>${SYLLABLES.map((b) => {
+                const m = moBySyllables[a.id + "-" + b.id];
+                return `<td class="omen-${m.omen}"><a href="mo/${m.slug}.html" title="${m.name}: ${OMENS[m.omen].text}">${m.n}</a></td>`;
+              }).join("")}</tr>`,
+          ).join("") +
+          "</tbody>";
+        document.getElementById("mantra-say").innerHTML = sayButton("mantra", "the mantra", "say-btn");
+      });
+    </script>
+  </head>
+
+  <body onload="setupPage('about')" id="omg-body">
+    <div id="omg-header">
+      <h1><a href="index.html">Tibetan Mo Reading</a></h1>
+      <div id="omg-header-tools">
+        <div id="omg-theme-picker"></div>
+        <a
+          id="omg-github"
+          href="https://github.com/evoluteur/tibetan-mo-reading"
+          target="_blank"
+          rel="noopener"
+          title="Tibetan Mo Reading on GitHub"
+          aria-label="Tibetan Mo Reading on GitHub"
+          ><svg viewBox="0 0 16 16" aria-hidden="true">
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+            /></svg
+        ></a>
+      </div>
+    </div>
+    <h2>About Mo</h2>
+    <div class="content about">
+      <p class="lede">
+        <span lang="bo" class="tib">མོ</span> <em class="accent">Mo</em> is the
+        Tibetan word for divination. For centuries, Tibetans have asked a lama
+        to &ldquo;do a mo&rdquo; before a journey, a marriage, a medical
+        treatment or any decision that matters, and the answer is read from
+        dice, the beads of a rosary, or other simple means.
+      </p>
+      <p>
+        <button
+          type="button"
+          class="interpret-btn"
+          onclick="location.href = 'index.html'"
+        >
+          Ask the Mo Now
+        </button>
+      </p>
+
+      <h3>A question, a prayer and a throw</h3>
+      <p>
+        A Mo is not a game of chance in the eyes of those who use it. The
+        diviner first settles the mind, takes refuge, and calls on a deity of
+        wisdom, then asks one clear question and throws. The answer is
+        understood to come not from the dice but from that wisdom, reflected in
+        how they fall. That is why the question is asked once, and the first
+        answer is the one that counts.
+      </p>
+      <p>
+        There are many kinds of Mo. Some count the beads of a
+        <em class="accent">mala</em> between the two hands; some roll balls of
+        dough, each holding a written answer, in a bowl; some throw ordinary
+        dice and read the numbers. The Mo in this app is the dice divination of
+        Manjushri, the bodhisattva of wisdom, in the form set down by the
+        nineteenth-century master Jamg&ouml;n Mipham.
+      </p>
+
+      <h3>Manjushri&rsquo;s six syllables</h3>
+      <p>
+        The die of this Mo has no numbers. Each of its six faces carries one
+        syllable of Manjushri&rsquo;s mantra, the short prayer recited before
+        every throw:
+      </p>
+      <p class="mantra-line">
+        <span class="tib" lang="bo">ༀ་ཨ་ར་པ་ཙ་ན་དྷཱི།</span>
+        <span class="mantra-latin">OM A RA PA TSA NA DHI</span
+        ><span id="mantra-say"></span>
+      </p>
+      <p>
+        A, RA, PA, TSA and NA are the first five letters of the
+        <em class="accent">Arapacana</em>, an alphabet of the Gandhari language
+        that some Mahayana sutras use as a meditation, with each letter opening
+        onto a teaching: A, for instance, onto the insight that nothing has
+        ever truly come into being. DHI is Manjushri&rsquo;s seed syllable, the
+        sound of wisdom itself. Modern readers usually give each syllable an
+        element:
+      </p>
+      <figure class="syllables">
+        <ol class="glyphs syl-glyphs" id="syl-picks"></ol>
+        <figcaption>
+          The six syllables on the faces of the Mo die. Click one to read what
+          it stands for and the six divinations it begins.
+        </figcaption>
+      </figure>
+
+      <h3>Thirty-six answers</h3>
+      <p>
+        The die is thrown twice (or two dice once, read in order). Six possible
+        first syllables and six possible second ones give 36 combinations, and
+        each one is a named divination: from A A,
+        <a href="mo/1-the-stainless-sky.html">The Stainless Sky</a>, to DHI
+        DHI,
+        <a href="mo/36-the-jeweled-banner-of-victory.html"
+          >The Jeweled Banner of Victory</a
+        >. Read the table by the first throw (row) and the second (column):
+      </p>
+      <figure>
+        <table class="mo-grid" id="mo-grid"></table>
+        <figcaption>
+          The 36 divinations of Mipham&rsquo;s Mo, colored by omen:
+          <span class="key omen-excellent">excellent</span>,
+          <span class="key omen-good">good</span>,
+          <span class="key omen-caution">caution</span> and
+          <span class="key omen-difficult">difficult</span>. Click a number for
+          its page, or see <a href="mo/">all 36 divinations</a>.
+        </figcaption>
+      </figure>
+      <p>
+        Twenty-eight of the thirty-six are auspicious, and seven of them carry
+        the names of the eight auspicious symbols of Tibetan Buddhism: the
+        parasol, the golden fish, the lotus, the conch, the endless knot, the
+        wheel and the victory banner, with a vase of nectar and a jeweled vessel
+        standing in for the treasure vase. Four of the eight difficult ones are
+        named for the four <em class="accent">maras</em>, the classic obstacles
+        on the Buddhist path: death, the afflicting emotions, the body and its
+        frailties, and the distractions of pleasure.
+      </p>
+      <p>
+        Mipham&rsquo;s text gives each divination a short image and then
+        answers for the areas of life people usually ask about: the family and
+        home, one&rsquo;s aims, friends and wealth, enemies, guests, illness,
+        harmful spirits, spiritual practice, lost things, whether someone will
+        come or a task be done, and everything else. Most answers end with a
+        recommended practice, such as a prayer, an offering or saving the lives
+        of animals, to strengthen a good sign or turn a bad one.
+      </p>
+
+      <h3>Jamg&ouml;n Mipham</h3>
+      <p>
+        Jamg&ouml;n Ju Mipham Gyatso (1846&ndash;1912) was one of the great
+        scholars of the Nyingma school of Tibetan Buddhism, from Kham in eastern
+        Tibet, and a leading figure of the
+        <em class="accent">Rim&eacute;</em>, or non-sectarian, movement. He
+        wrote on philosophy and meditation, but also on medicine, astrology,
+        poetry, art and crafts. His Mo manual, which presents itself as drawing
+        on the Kalachakra Tantra and the tradition of Manjushri, became one of
+        the most widely used divination books in Tibet and, through its English
+        translation, outside it.
+      </p>
+
+      <h3>A short history</h3>
+      <ul class="timeline">
+        <li>
+          <span class="when">1st&ndash;2nd century</span
+          ><span
+            >The Arapacana, the alphabet that begins a ra pa ca na, is used in
+            Buddhist manuscripts written in Gandhari, in what is now Pakistan
+            and Afghanistan. Perfection of Wisdom sutras later list its letters
+            as doors to meditation.</span
+          >
+        </li>
+        <li>
+          <span class="when">9th&ndash;10th century</span
+          ><span
+            >Tibetan dice divination manuals, read from the dots of thrown dice,
+            are among the manuscripts sealed in the library cave at Dunhuang, on
+            the Silk Road.
+            <a
+              href="https://en.wikipedia.org/wiki/Library_Cave"
+              target="_blank"
+              rel="noopener"
+              >The cave</a
+            >.</span
+          >
+        </li>
+        <li>
+          <span class="when">1846&ndash;1912</span
+          ><span
+            >Life of Jamg&ouml;n Mipham, who writes the Mo manual of
+            Manjushri&rsquo;s six syllables used in this app.
+            <a
+              href="https://en.wikipedia.org/wiki/Jamg%C3%B6n_Ju_Mipham_Gyatso"
+              target="_blank"
+              rel="noopener"
+              >Biography</a
+            >.</span
+          >
+        </li>
+        <li>
+          <span class="when">1990</span
+          ><span
+            >Snow Lion publishes <em>Mo: Tibetan Divination System</em>, an
+            English translation of Mipham&rsquo;s manual by Jay Goldberg
+            (Lobsang Dakpa), which brings it to readers outside Tibet.</span
+          >
+        </li>
+        <li>
+          <span class="when">2019</span
+          ><span
+            >Jan-Ulrich Sobisch&rsquo;s <em>Divining with Achi and Tara</em>
+            studies two other Tibetan dice divination manuals, a sign of growing
+            scholarly interest in Mo.</span
+          >
+        </li>
+      </ul>
+
+      <h3>What is traditional and what is new</h3>
+      <p>
+        The six syllables, the way they combine, and the names and order of
+        the 36 divinations follow Mipham&rsquo;s Mo, and the omens follow the
+        general sense of each divination. The meanings, the answers by
+        question, the advice and the suggested practices were written for this
+        app in plain modern English, and no translation is reproduced. The
+        areas of life are adapted for modern questions: harmful spirits are
+        left out, and journeys are read together with guests. For a Mo that
+        matters, Tibetans would ask a lama, and the full manual has much more
+        to say than a few lines.
+      </p>
+
+      <h3>How this app uses it</h3>
+      <p>
+        Choose what your question is about and, if you like, write it down.
+        Recite the mantra (click the speaker to hear it), then throw the die
+        twice. Each throw picks one of the six faces at random, with equal
+        chances, and the pair gives the divination. The app shows its omen, its
+        meaning, the answer for your kind of question, a line of advice and a
+        practice. Treat the answer as a mirror for your own judgment rather
+        than a verdict.
+      </p>
+
+      <p class="note"><a href="index.html">Back to Tibetan Mo Reading</a></p>
+
+      <div class="footer">
+        <p>
+          <a href="mo/">The 36 divinations</a> ·
+          <a href="about.html">About Mo</a>
+        </p>
+        <p>
+          The six syllables and the names and order of the 36 divinations
+          follow Jamg&ouml;n Mipham&rsquo;s Mo; meanings and advice were written
+          for this app.
+        </p>
+        <p>
+          Tibetan Mo Reading is open source on
+          <a href="https://github.com/evoluteur/tibetan-mo-reading">GitHub</a>
+          with an MIT license.
+        </p>
+        <p>
+          Had fun browsing the app?
+          <a href="https://github.com/sponsors/evoluteur"
+            >Buy me a coffee by becoming a sponsor</a
+          >.
+        </p>
+        <p>
+          You may also enjoy other readings like
+          <a href="https://evoluteur.github.io/i-ching-reading/">I Ching</a>,
+          <a href="https://evoluteur.github.io/tarot-reading/">Tarot</a>, and
+          <a href="https://evoluteur.github.io/rune-reading/">Runes</a>. For
+          more mystic arts as small web apps, see
+          <a href="https://evoluteur.github.io/esoterica.html">Esoterica</a>.
+        </p>
+        <p class="copyright">
+          &#169; 2026
+          <a href="https://evoluteur.github.io/">Olivier Giulieri</a>
+        </p>
+      </div>
+    </div>
+
+    <div id="detail-overlay" class="detail-overlay"></div>
+    <aside id="card-detail" class="card-detail pane"></aside>
+  </body>
+</html>

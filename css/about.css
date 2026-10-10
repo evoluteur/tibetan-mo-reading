@@ -1,0 +1,203 @@
+/* About page and footer (linked from index.html and about.html) */
+.footer p {
+  margin: 0 0 6px;
+  line-height: 1.5;
+}
+.footer p.copyright {
+  margin-top: 20px;
+}
+
+.about {
+  max-width: 720px;
+}
+.about h3 {
+  margin: 34px 0 10px;
+}
+.about p,
+.about li {
+  line-height: 1.6;
+}
+.about strong {
+  font-weight: bold; /* the dark theme renders <strong> at normal weight */
+}
+#omg-header h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+.about .lede {
+  font-size: 1.15em;
+  opacity: 0.9;
+}
+.about .note {
+  font-size: 0.9em;
+  opacity: 0.85;
+}
+.about .accent {
+  font-style: italic;
+  color: var(--accent, #ffa500);
+}
+.about .anatomy {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 18px;
+  margin: 0 0 20px;
+  padding: 14px 0;
+  border-block: 1px solid var(--card-border);
+}
+.about .anatomy dt {
+  font-weight: bold;
+  color: var(--card-strong);
+}
+.about .anatomy dd {
+  margin: 0;
+  opacity: 0.85;
+}
+.about .timeline {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+}
+.about .timeline li {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 14px;
+  margin: 0;
+  padding: 12px 0;
+  border-top: 1px solid var(--card-border);
+  font-size: 0.95em;
+  line-height: 1.55;
+}
+.about .timeline li:last-child {
+  border-bottom: 1px solid var(--card-border);
+}
+.about .timeline .when {
+  font-weight: bold;
+  color: var(--card-strong);
+  font-variant-numeric: tabular-nums;
+}
+@media only screen and (max-width: 480px) {
+  .about .timeline li {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
+
+/* The Elder Futhark chart. The themes ship a generic svg rule (22px, tan fill,
+   orange on hover) meant for icons, so these drawings opt out of it. */
+.about figure {
+  margin: 22px 0;
+}
+.about figcaption {
+  margin-top: 8px;
+  font-size: 0.8em;
+  line-height: 1.5;
+  opacity: 0.75;
+}
+.about .aett h4 {
+  margin: 18px 0 8px;
+  font-size: 0.95em;
+  opacity: 0.85;
+}
+.about .glyphs {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 8px 6px;
+  margin: 0;
+  padding: 0;
+}
+.about .glyphs li {
+  display: block;
+  margin: 0;
+}
+.about .rune-pick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+  margin: 0; /* the themes give every button a margin */
+  padding: 8px 2px 6px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  color: inherit;
+  font: inherit;
+  font-size: 0.75em;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+.about .rune-pick:hover,
+.about .rune-pick:focus-visible {
+  border-color: color-mix(in srgb, var(--card-border), white 40%);
+}
+.about .rune-pick.active {
+  border-color: currentColor;
+}
+.about svg.glyph {
+  width: 28px;
+  height: 45px;
+  margin-bottom: 4px;
+  fill: none;
+  stroke: var(--accent, #ffa500);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  cursor: inherit;
+}
+.about svg.glyph:hover {
+  fill: none;
+}
+.about .glyphs .rn {
+  font-weight: bold;
+  color: var(--card-strong);
+}
+.about .glyphs .rs {
+  opacity: 0.7;
+}
+.about .timeline a {
+  white-space: nowrap;
+}
+@media only screen and (max-width: 560px) {
+  .about .glyphs {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* speaker button next to a rune name (uses the browser's speech voice) */
+.about .say-btn {
+  display: inline-flex;
+  vertical-align: middle;
+  margin: 0 0 2px 8px;
+  padding: 2px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: inherit;
+  opacity: 0.65;
+  cursor: pointer;
+}
+.about .say-btn:hover,
+.about .say-btn:focus-visible {
+  opacity: 1;
+}
+.about .say-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  cursor: pointer;
+}
+.about .say-btn svg:hover {
+  fill: none;
+}
+
+/* runes.css gives the reading page a tall footer gap; the about page does not need it */
+.about .footer {
+  margin-top: 30px;
+}
