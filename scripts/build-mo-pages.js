@@ -119,7 +119,7 @@ ${JSON.stringify(jsonld, null, 2)}
 `;
 
 const header = () => `
-  <body onload="setupPage('mo');" id="omg-body">
+  <body onload="setupPage('mo');" id="omg-body" class="medium">
     <div id="omg-header">
       <h1><a href="../index.html">Tibetan Mo Reading</a></h1>
       <div id="omg-header-tools">
